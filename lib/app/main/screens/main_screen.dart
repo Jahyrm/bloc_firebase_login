@@ -1,8 +1,10 @@
 import 'package:bloc_firebase_login/core/configs/app_themes.dart';
+import 'package:bloc_firebase_login/core/resources/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/repositories/authentication_repository.dart';
+import '../../login/screens/login_screen.dart';
 import '../bloc/auth_bloc.dart';
 
 class MainApp extends StatelessWidget {
@@ -33,8 +35,14 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'FlutterFire BLoC Login',
       theme: AppThemes.lightTheme,
-      home: Container(),
+      onGenerateRoute:
+          AppRouter(bloc: context.read<AuthBloc>()).onGenerateRoute,
+      initialRoute:
+          context.read<AuthBloc>().state.status == AuthStatus.authenticated
+              ? LoginScreen.routeName
+              : LoginScreen.routeName,
     );
   }
 }

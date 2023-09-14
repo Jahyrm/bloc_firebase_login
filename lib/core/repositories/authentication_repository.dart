@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -75,6 +77,10 @@ class LogInWithEmailAndPasswordFailure implements Exception {
       case 'wrong-password':
         return const LogInWithEmailAndPasswordFailure(
           'Contraseña incorrecta. Por favor, intente de nuevo.',
+        );
+      case 'INVALID_LOGIN_CREDENTIALS':
+        return const LogInWithEmailAndPasswordFailure(
+          'Credenciales incorrectas. Por favor, intente de nuevo.',
         );
       default:
         return const LogInWithEmailAndPasswordFailure();

@@ -11,4 +11,4 @@ class Imagen {
 
 /// En este archivo se estableceran todas las imágenes a utilizar en el proyecto
 // Generales
-// Imagen imgAvatar = Imagen('assets/imgs/avatar.png');
+Imagen imgBlocLogo = Imagen('assets/imgs/bloc_logo_small.png');
