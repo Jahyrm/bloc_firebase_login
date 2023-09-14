@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "73493702931",
+    "project_id": "flutter-bloc-login-1878f",
+    "storage_bucket": "flutter-bloc-login-1878f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73493702931:android:8dba8ad855f393aa4b52e6",
+        "android_client_info": {
+          "package_name": "com.jahyrm.bloc_firebase_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2idIxtIy1u5tBo-FTaDUmUi7BtPDWJf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
