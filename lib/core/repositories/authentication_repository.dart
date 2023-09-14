@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:meta/meta.dart';
 
-import '../../app/auth/models/user.dart';
+import '../../app/main/models/user.dart';
 import '../utils/cache_util.dart';
 
 /// Thrown during the sign up process if a failure occurs.
@@ -168,9 +168,7 @@ class AuthenticationRepository {
   /// Throws a [LogOutFailure] if an exception occurs.
   Future<void> logOut() async {
     try {
-      await Future.wait([
-        _firebaseAuth.signOut(),
-      ]);
+      await Future.wait([_firebaseAuth.signOut()]);
     } catch (_) {
       throw LogOutFailure();
     }
