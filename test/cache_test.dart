@@ -1,6 +1,7 @@
 import 'package:bloc_firebase_login/core/utils/cache_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+/// Part 7
 void main() {
   group('CacheClient', () {
     test('Se puede escribir y leer valores para una key dada.', () {

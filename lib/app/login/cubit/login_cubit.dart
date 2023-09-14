@@ -7,6 +7,7 @@ import '../../../core/utils/utils.dart';
 
 part 'login_state.dart';
 
+/// Part 2
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(const LoginState());
 

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Part 5
 /// We extend Equatable so that we can compare Posts. Without this, we would
 /// need to manually change our class to override equality and hashCode so that
 /// we could tell the difference between two Posts objects.

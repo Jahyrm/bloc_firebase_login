@@ -5,6 +5,9 @@ import 'package:bloc_firebase_login/app/sign_up/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// Part 8: Extra knowledge
+/// When we navigate to different screens, thanks to this class you can
+/// always use the AuthBloc
 class AppRouter {
   AppRouter({required AuthBloc bloc}) : _authBloc = bloc;
 

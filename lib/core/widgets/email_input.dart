@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/validator_utils.dart';
 
+/// Part 4
 class EmailInput extends StatelessWidget {
   const EmailInput({super.key, this.onChanged});
 

@@ -7,6 +7,8 @@ import 'package:meta/meta.dart';
 import '../../app/main/models/user.dart';
 import '../utils/cache_util.dart';
 
+/// Part 3
+
 /// Thrown during the sign up process if a failure occurs.
 class SignUpWithEmailAndPasswordFailure implements Exception {
   const SignUpWithEmailAndPasswordFailure([

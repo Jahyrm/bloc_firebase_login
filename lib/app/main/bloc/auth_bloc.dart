@@ -9,6 +9,7 @@ import '../models/user.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
+/// Part 2
 /// Authentication BLoC
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   /// In this constructor. We check the state of the [currentUser] in the

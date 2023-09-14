@@ -6,6 +6,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+/// Part 7
 class MockAuthenticationRepository extends Mock
     implements AuthenticationRepository {}
 

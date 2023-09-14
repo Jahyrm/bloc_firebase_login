@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+/// Part 5
 /// User model
 /// The User class is extending equatable in order to override equality
 /// comparisons so that we can compare different instances of User by value.

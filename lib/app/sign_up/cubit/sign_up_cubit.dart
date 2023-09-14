@@ -8,6 +8,7 @@ import '../../../core/repositories/authentication_repository.dart';
 
 part 'sign_up_state.dart';
 
+/// Part 2
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit(this._authenticationRepository) : super(const SignUpState());
 
