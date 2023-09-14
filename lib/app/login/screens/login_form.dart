@@ -1,6 +1,5 @@
 import 'package:bloc_firebase_login/app/sign_up/screens/sign_up_screen.dart';
 import 'package:bloc_firebase_login/core/resources/images.dart';
-import 'package:bloc_firebase_login/core/utils/validator_utils.dart';
 import 'package:bloc_firebase_login/core/widgets/email_input.dart';
 import 'package:bloc_firebase_login/core/widgets/main_button.dart';
 import 'package:bloc_firebase_login/core/widgets/password_input.dart';

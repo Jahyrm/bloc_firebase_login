@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_firebase_login/app/login/cubit/login_cubit.dart';
 import 'package:bloc_firebase_login/core/utils/utils.dart';
-import 'package:bloc_firebase_login/core/utils/validator_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 
