@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
+import 'core/configs/firebase_options.dart';
 
 Future<void> main() async {
   /// Esta línea nos asegura que todas las cargas async/await se realicen antes
