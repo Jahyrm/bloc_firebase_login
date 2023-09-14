@@ -14,13 +14,20 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        backgroundColor: color ?? const Color(0xFFFFD600),
-      ),
-      onPressed: onPressed,
-      child: Text(text),
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30)),
+              backgroundColor: color ?? const Color(0xFFFFD600),
+            ),
+            onPressed: onPressed,
+            child: Text(text.toUpperCase()),
+          ),
+        ),
+      ],
     );
   }
 }

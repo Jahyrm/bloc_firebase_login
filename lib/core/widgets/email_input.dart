@@ -12,6 +12,7 @@ class EmailInput extends StatelessWidget {
     return TextFormField(
       onChanged: onChanged,
       keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
       decoration: const InputDecoration(labelText: 'Correo electrónico'),
       validator: (email) => ValidatorUtils.validateEmail(email),
     );

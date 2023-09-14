@@ -21,50 +21,58 @@ class SignUpForm extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                  content: Text(state.errorMessage ?? 'Error de registro')),
+                content: Text(
+                  state.errorMessage ?? 'Error de registro',
+                  textAlign: TextAlign.center,
+                ),
+                backgroundColor: Colors.red,
+              ),
             );
         }
       },
       child: Align(
         alignment: const Alignment(0, -1 / 3),
-        child: Form(
-          key: context.read<SignUpCubit>().signUpFormKey,
-          autovalidateMode: context.watch<SignUpCubit>().state.status ==
-                  FormStatus.validationFail
-              ? AutovalidateMode.always
-              : AutovalidateMode.disabled,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              EmailInput(
-                onChanged: (email) =>
-                    context.read<SignUpCubit>().emailChanged(email),
-              ),
-              const SizedBox(height: 8),
-              PasswordInput(
-                onChanged: (passwd) =>
-                    context.read<SignUpCubit>().passwordChanged(passwd),
-                obscureText: context.watch<SignUpCubit>().state.obscurePassword,
-                togglePassword:
-                    context.read<SignUpCubit>().togglePasswordVisibility,
-              ),
-              const SizedBox(height: 8),
-              PasswordInput(
-                onChanged: (passwd) => context
-                    .read<SignUpCubit>()
-                    .confirmedPasswordChanged(passwd),
-                obscureText:
-                    context.watch<SignUpCubit>().state.obscureConfirmedPassword,
-                mainPassword: context.watch<SignUpCubit>().state.password,
-                togglePassword: context
-                    .read<SignUpCubit>()
-                    .toggleConfirmedPasswordVisibility,
-              ),
-              const SizedBox(height: 8),
-              _SignUpButton(),
-            ],
-          ),
-        ),
+        child: BlocBuilder<SignUpCubit, SignUpState>(builder: (context, state) {
+          return Form(
+            key: context.read<SignUpCubit>().signUpFormKey,
+            autovalidateMode: state.status == FormStatus.validationFail
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                EmailInput(
+                  onChanged: (email) =>
+                      context.read<SignUpCubit>().emailChanged(email),
+                ),
+                const SizedBox(height: 8),
+                PasswordInput(
+                  onChanged: (passwd) =>
+                      context.read<SignUpCubit>().passwordChanged(passwd),
+                  obscureText: state.obscurePassword,
+                  togglePassword:
+                      context.read<SignUpCubit>().togglePasswordVisibility,
+                ),
+                const SizedBox(height: 8),
+                PasswordInput(
+                  onChanged: (passwd) => context
+                      .read<SignUpCubit>()
+                      .confirmedPasswordChanged(passwd),
+                  onEditingComplete:
+                      context.read<SignUpCubit>().signUpFormSubmitted,
+                  obscureText: state.obscureConfirmedPassword,
+                  mainPassword: state.password,
+                  togglePassword: context
+                      .read<SignUpCubit>()
+                      .toggleConfirmedPasswordVisibility,
+                  isLast: true,
+                ),
+                const SizedBox(height: 8),
+                _SignUpButton(),
+              ],
+            ),
+          );
+        }),
       ),
     );
   }
@@ -78,9 +86,7 @@ class _SignUpButton extends StatelessWidget {
         return state.status == FormStatus.loading
             ? const CircularProgressIndicator()
             : MainButton(
-                onPressed: () {
-                  context.read<SignUpCubit>().signUpFormSubmitted();
-                },
+                onPressed: context.read<SignUpCubit>().signUpFormSubmitted,
                 text: 'REGISTRARSE',
               );
       },

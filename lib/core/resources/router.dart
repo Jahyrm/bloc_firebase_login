@@ -1,3 +1,4 @@
+import 'package:bloc_firebase_login/app/home/screens/home_screen.dart';
 import 'package:bloc_firebase_login/app/login/screens/login_screen.dart';
 import 'package:bloc_firebase_login/app/main/bloc/auth_bloc.dart';
 import 'package:bloc_firebase_login/app/sign_up/screens/sign_up_screen.dart';
@@ -11,6 +12,13 @@ class AppRouter {
 
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case HomeScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: _authBloc,
+            child: const HomeScreen(),
+          ),
+        );
       case LoginScreen.routeName:
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(

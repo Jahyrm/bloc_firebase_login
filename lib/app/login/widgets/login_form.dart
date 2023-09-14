@@ -22,7 +22,11 @@ class LoginForm extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage ?? 'Fallo de autentificacion'),
+                content: Text(
+                  state.errorMessage ?? 'Fallo de autenticación',
+                  textAlign: TextAlign.center,
+                ),
+                backgroundColor: Colors.red,
               ),
             );
         }
@@ -30,65 +34,48 @@ class LoginForm extends StatelessWidget {
       child: Align(
         alignment: const Alignment(0, -1 / 3),
         child: SingleChildScrollView(
-          child: Form(
-            key: context.read<LoginCubit>().loginFormKey,
-            autovalidateMode: context.watch<LoginCubit>().state.status ==
-                    FormStatus.validationFail
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  imgBlocLogo.path,
-                  height: 120,
-                ),
-                const SizedBox(height: 16),
-                EmailInput(
-                  onChanged: (email) =>
-                      context.read<LoginCubit>().emailChanged(email),
-                ),
-                const SizedBox(height: 8),
-                PasswordInput(
-                  onChanged: (passwd) =>
-                      context.read<LoginCubit>().passwordChanged(passwd),
-                  obscureText:
-                      context.watch<LoginCubit>().state.obscurePassword,
-                  togglePassword:
-                      context.read<LoginCubit>().togglePasswordVisibility,
-                ),
-                const SizedBox(height: 8),
-                _loginButton(context),
-                const SizedBox(height: 8),
-                _signUpButton(context),
-                const SizedBox(height: 16),
-              ],
-            ),
-          ),
+          child: BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+            return Form(
+              key: context.read<LoginCubit>().loginFormKey,
+              autovalidateMode: state.status == FormStatus.validationFail
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    imgBlocLogo.path,
+                    height: 120,
+                  ),
+                  const SizedBox(height: 16),
+                  EmailInput(
+                    onChanged: (email) =>
+                        context.read<LoginCubit>().emailChanged(email),
+                  ),
+                  const SizedBox(height: 8),
+                  PasswordInput(
+                    onChanged: (passwd) =>
+                        context.read<LoginCubit>().passwordChanged(passwd),
+                    obscureText: state.obscurePassword,
+                    togglePassword:
+                        context.read<LoginCubit>().togglePasswordVisibility,
+                    onEditingComplete:
+                        context.read<LoginCubit>().logInWithCredentials,
+                    isLast: true,
+                  ),
+                  const SizedBox(height: 8),
+                  _loginButton(context),
+                  const SizedBox(height: 8),
+                  _signUpButton(context),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            );
+          }),
         ),
       ),
     );
   }
-
-  /*
-  TextFormField _emailInput(BuildContext context) {
-    return TextFormField(
-      onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
-      keyboardType: TextInputType.emailAddress,
-      decoration: const InputDecoration(labelText: 'Correo electrónico'),
-      validator: (email) => ValidatorUtils.validateEmail(email),
-    );
-  }
-
-  TextFormField _passwordInput(BuildContext context) {
-    return TextFormField(
-      onChanged: (passwd) => context.read<LoginCubit>().passwordChanged(passwd),
-      obscureText: true,
-      decoration: const InputDecoration(labelText: 'Contraseña'),
-      validator: (password) => ValidatorUtils.validatePassword(password),
-    );
-  }
-  */
 
   BlocBuilder _loginButton(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
@@ -96,10 +83,8 @@ class LoginForm extends StatelessWidget {
         return state.status == FormStatus.loading
             ? const CircularProgressIndicator()
             : MainButton(
-                onPressed: () {
-                  context.read<LoginCubit>().logInWithCredentials();
-                },
-                text: 'Iniciar Sesión',
+                onPressed: context.read<LoginCubit>().logInWithCredentials,
+                text: 'INICIAR SESIÓN',
               );
       },
     );
@@ -110,7 +95,7 @@ class LoginForm extends StatelessWidget {
     return TextButton(
       onPressed: () => Navigator.of(context).pushNamed(SignUpScreen.routeName),
       child: Text(
-        'CREATE ACCOUNT',
+        'CREAR CUENTA',
         style: TextStyle(color: theme.primaryColor),
       ),
     );

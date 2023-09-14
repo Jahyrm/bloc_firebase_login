@@ -1,3 +1,4 @@
+import 'package:bloc_firebase_login/app/home/screens/home_screen.dart';
 import 'package:bloc_firebase_login/core/configs/app_themes.dart';
 import 'package:bloc_firebase_login/core/resources/router.dart';
 import 'package:flutter/material.dart';
@@ -39,10 +40,11 @@ class MainScreen extends StatelessWidget {
       theme: AppThemes.lightTheme,
       onGenerateRoute:
           AppRouter(bloc: context.read<AuthBloc>()).onGenerateRoute,
-      initialRoute:
-          context.read<AuthBloc>().state.status == AuthStatus.authenticated
-              ? LoginScreen.routeName
-              : LoginScreen.routeName,
+      home: BlocBuilder<AuthBloc, AuthState>(builder: (context, state) {
+        return state.status == AuthStatus.authenticated
+            ? const HomeScreen()
+            : const LoginScreen();
+      }),
     );
   }
 }

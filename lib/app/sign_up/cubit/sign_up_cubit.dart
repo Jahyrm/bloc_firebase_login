@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_firebase_login/app/login/cubit/login_cubit.dart';
+import 'package:bloc_firebase_login/core/utils/utils.dart';
 import 'package:bloc_firebase_login/core/utils/validator_utils.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
@@ -41,6 +42,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<void> signUpFormSubmitted() async {
     if (signUpFormKey.currentState?.validate() ?? false) {
+      Utils.ocultarTeclado();
       emit(state.copyWith(status: FormStatus.loading));
       try {
         await _authenticationRepository.signUp(

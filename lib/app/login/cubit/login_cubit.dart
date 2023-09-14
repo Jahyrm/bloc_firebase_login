@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../core/repositories/authentication_repository.dart';
+import '../../../core/utils/utils.dart';
 
 part 'login_state.dart';
 
@@ -27,6 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> logInWithCredentials() async {
     if (loginFormKey.currentState?.validate() ?? false) {
+      Utils.ocultarTeclado();
       emit(state.copyWith(status: FormStatus.loading, errorMessage: null));
       try {
         await _authenticationRepository.logInWithEmailAndPassword(
