@@ -11,7 +11,10 @@ class ValidatorUtils {
     return null;
   }
 
-  static String? validatePassword(String? password) {
+  static String? validatePassword(String? password, {String? mainPassword}) {
+    if (mainPassword?.isNotEmpty ?? false) {
+      if (password != mainPassword) return 'Las constraseñas no coinciden';
+    }
     if (password?.isNotEmpty ?? false) {
       RegExp passwordRegExp = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$');
       if (!passwordRegExp.hasMatch(password!)) {

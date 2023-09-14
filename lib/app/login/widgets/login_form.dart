@@ -1,6 +1,9 @@
+import 'package:bloc_firebase_login/app/sign_up/screens/sign_up_screen.dart';
 import 'package:bloc_firebase_login/core/resources/images.dart';
 import 'package:bloc_firebase_login/core/utils/validator_utils.dart';
+import 'package:bloc_firebase_login/core/widgets/email_input.dart';
 import 'package:bloc_firebase_login/core/widgets/main_button.dart';
+import 'package:bloc_firebase_login/core/widgets/password_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,9 +44,19 @@ class LoginForm extends StatelessWidget {
                   height: 120,
                 ),
                 const SizedBox(height: 16),
-                _emailInput(context),
+                EmailInput(
+                  onChanged: (email) =>
+                      context.read<LoginCubit>().emailChanged(email),
+                ),
                 const SizedBox(height: 8),
-                _passwordInput(context),
+                PasswordInput(
+                  onChanged: (passwd) =>
+                      context.read<LoginCubit>().passwordChanged(passwd),
+                  obscureText:
+                      context.watch<LoginCubit>().state.obscurePassword,
+                  togglePassword:
+                      context.read<LoginCubit>().togglePasswordVisibility,
+                ),
                 const SizedBox(height: 8),
                 _loginButton(context),
                 const SizedBox(height: 8),
@@ -57,6 +70,7 @@ class LoginForm extends StatelessWidget {
     );
   }
 
+  /*
   TextFormField _emailInput(BuildContext context) {
     return TextFormField(
       onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
@@ -74,6 +88,7 @@ class LoginForm extends StatelessWidget {
       validator: (password) => ValidatorUtils.validatePassword(password),
     );
   }
+  */
 
   BlocBuilder _loginButton(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
@@ -93,7 +108,7 @@ class LoginForm extends StatelessWidget {
   TextButton _signUpButton(BuildContext context) {
     final theme = Theme.of(context);
     return TextButton(
-      onPressed: () {},
+      onPressed: () => Navigator.of(context).pushNamed(SignUpScreen.routeName),
       child: Text(
         'CREATE ACCOUNT',
         style: TextStyle(color: theme.primaryColor),

@@ -21,6 +21,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(state.copyWith(password: value, errorMessage: null));
   }
 
+  void togglePasswordVisibility() {
+    emit(state.copyWith(obscurePassword: !state.obscurePassword));
+  }
+
   Future<void> logInWithCredentials() async {
     if (loginFormKey.currentState?.validate() ?? false) {
       emit(state.copyWith(status: FormStatus.loading, errorMessage: null));

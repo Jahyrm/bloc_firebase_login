@@ -1,5 +1,6 @@
 import 'package:bloc_firebase_login/app/login/screens/login_screen.dart';
 import 'package:bloc_firebase_login/app/main/bloc/auth_bloc.dart';
+import 'package:bloc_firebase_login/app/sign_up/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +16,13 @@ class AppRouter {
           builder: (_) => BlocProvider.value(
             value: _authBloc,
             child: const LoginScreen(),
+          ),
+        );
+      case SignUpScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: _authBloc,
+            child: const SignUpScreen(),
           ),
         );
       default:
