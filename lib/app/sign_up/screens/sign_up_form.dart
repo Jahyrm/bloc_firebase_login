@@ -86,6 +86,7 @@ class _SignUpButton extends StatelessWidget {
         return state.status == FormStatus.loading
             ? const CircularProgressIndicator()
             : MainButton(
+                color: const Color(0xFF0097A7),
                 onPressed: context.read<SignUpCubit>().signUpFormSubmitted,
                 text: 'REGISTRARSE',
               );

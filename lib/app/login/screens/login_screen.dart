@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/repositories/authentication_repository.dart';
 import '../cubit/login_cubit.dart';
-import '../widgets/login_form.dart';
+import 'login_form.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = '/login';
